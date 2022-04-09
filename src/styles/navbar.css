@@ -1,0 +1,19 @@
+.nav-all{
+    display: flex;
+    padding: 2rem;
+    justify-content: space-between;
+}
+
+.shop-name{
+    font-size: 4rem;
+}
+
+.right-nav{
+    display: flex;
+    justify-content: space-evenly;
+    width: 25%;
+}
+
+a{
+    text-decoration: none;
+}

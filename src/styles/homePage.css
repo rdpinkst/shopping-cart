@@ -1,0 +1,30 @@
+.body-site{
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .home-img{
+    height: 100%;
+    width: 33%;
+  }
+  
+  .start-shopping{
+    background-color: #F1B24A;
+    font-size: 1.5em;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    margin-top: 2rem;
+  }
+  
+  h3{
+    font-size: 4rem;
+  }
+  
+  h4{
+    font-size: 3rem;
+  }
+
+  .info-site{
+      text-align: end;
+  }
