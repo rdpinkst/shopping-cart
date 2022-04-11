@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import "../styles/navbar.css";
 
-function Navbar() {
+function Navbar({cart}) {
   return (
     <div className="nav-all">
       <Link to="/">
@@ -15,6 +15,7 @@ function Navbar() {
         <Link to="/shop">SHOP</Link>
         <Link to="/checkout">
           <FontAwesomeIcon icon={faBagShopping} />
+          {cart.length > 0 && <span>({cart.length})</span>}
         </Link>
       </div>
     </div>

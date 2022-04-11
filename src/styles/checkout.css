@@ -1,0 +1,54 @@
+.center-buy{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.increment{
+    border: none;
+    color: #F1B24A;
+    background-color: white;
+    font-weight: 800;
+    font-size: 1rem;
+    width: 1rem;
+    margin: 0 0.5rem;
+}
+
+.checkout-cart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+
+}
+
+.remove-product{
+    position: absolute;
+    margin-left: auto;
+}
+
+.quant-button{
+    display: flex;
+    margin: 0.5rem 0;
+}
+
+.product-cart{
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 0.5rem;
+}
+
+.checkout-btn, .goshop-btn{
+    background-color: #F1B24A;
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 0.5em;
+    cursor: pointer;
+}
+.goshop-btn{
+    margin-top: 0.5rem;
+}
+
+span{
+    cursor: pointer;
+}

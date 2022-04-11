@@ -1,0 +1,41 @@
+.store-center{
+    display: flex;
+    justify-content: center;
+}
+
+.product-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    padding: 1rem;
+    width: 17rem;
+    border-radius: 2rem;
+}
+
+.product-card > p{
+    margin-bottom: .5rem;
+}
+
+.add-item{
+    background-color: #F1B24A;
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 0.25em;
+    cursor: pointer;
+}
+
+.store-layout{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.picture-product{
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 0.5rem;
+}
