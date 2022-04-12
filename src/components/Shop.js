@@ -6,7 +6,7 @@ function Shop({ infoStore, click }) {
     <div key={index} className="product-card">
       <img className="picture-product" src={pict.pic} alt="pots for sale" />
       <p>{pict.description}</p>
-      <p>{pict.price}</p>
+      <p>${pict.price}</p>
       <button id = {index} className="add-item" onClick={click}>Add to Cart</button>
     </div>
   ));

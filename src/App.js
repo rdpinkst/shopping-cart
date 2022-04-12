@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import FootersProject from "./components/FootersProject";
 import HomePage from "./components/HomePage";
@@ -10,95 +10,91 @@ import data from "./data";
 import "./app.css";
 
 function App() {
-  const [storeInfo, setStoreInfo] = useState(data);
+  const storeInfo = data;
   const [shopCart, setShopCart] = useState([]);
+  const [totalItems, setTotalItems] = useState('');
+  const [grandTotal, setGrandTotal] = useState('')
 
   function clickAdd(e) {
     const indexBuy = parseInt(e.target.id);
-    setStoreInfo((prevInfo) => {
-      return prevInfo.map((info, index) => {
-        if (index === indexBuy) {
-          return {
-            ...info,
-            quantity: info.quantity + 1,
-          };
-        } else {
-          return info;
-        }
-      });
-    });
+
     setShopCart((prevCart) => {
-      if (shopCart.length > 0) {
-        return [...prevCart, { ...storeInfo[indexBuy], quantity: storeInfo[indexBuy].quantity + 1 }];
+      const duplicateItem = prevCart.some((info) => info.id === indexBuy);
+      if (prevCart.length > 0 && !duplicateItem) {
+        return [...prevCart, storeInfo[indexBuy]];
+      } else if (prevCart.length > 0 && duplicateItem) {
+        return prevCart.map((cart) => {
+          if (cart.id === indexBuy) {
+            return {
+              ...cart,
+              quantity: cart.quantity + 1,
+            };
+          } else {
+            return cart;
+          }
+        });
       } else {
         return [storeInfo[indexBuy]];
       }
     });
   }
 
-  function incrementQuant(e){
-    console.log(e.target.parentElement.id)
-    const indexIncrement = parseInt(e.target.parentElement.id);
+  useEffect(() => {
+    if (shopCart.length) {
+      setTotalItems(total(shopCart));
+      setGrandTotal(totalSpent(shopCart))
+    }
+  }, [shopCart]);
 
-    setStoreInfo(prevInfo => {
-      return prevInfo.map(info => {
-        if(info.id === indexIncrement && e.target.textContent === '+'){
-          return (
-            {
-              ...info,
-              quantity: info.quantity + 1
-            }
-          )
-        } else if (info.id === indexIncrement && e.target.textContent === '-'){
-          return (
-            {
-              ...info,
-              quantity: info.quantity - 1
-            }
-          )
-        } else{
-          return info;
-        }
-      })
-    })
-
+  function total(cart) {
+    const quantityArray = cart.map((item) => item.quantity);
+    return quantityArray.reduce((a, b) => a + b);
   }
 
-  function deleteItem(e) {
-    const indexDelete = parseInt(e.target.id);
-    console.log(indexDelete);
+  function totalSpent(cart) {
+    const totalArray = cart.map((item) => item.quantity * item.price);
+    return totalArray.reduce((a, b) => a + b)
+  }
+
+  function incrementQuant(e) {
+    const indexIncrement = parseInt(e.target.parentElement.id);
+
     setShopCart((prevCart) => {
-      return prevCart.filter((item) => indexDelete !== item.id);
-    });
-    setStoreInfo((prevInfo) => {
-      return prevInfo.map((info) => {
-        if (indexDelete === info.id) {
+      return prevCart.map((cart) => {
+        if (cart.id === indexIncrement && e.target.textContent === "+") {
           return {
-            ...info,
-            quantity: 1,
+            ...cart,
+            quantity: cart.quantity + 1,
+          };
+        } else if (cart.id === indexIncrement && e.target.textContent === "-" && cart.quantity !== 0) {
+          return {
+            ...cart,
+            quantity: cart.quantity - 1,
           };
         } else {
-          return info;
+          return cart;
         }
       });
     });
   }
 
+  function deleteItem(e) {
+    const indexDelete = parseInt(e.target.id);
+
+    setShopCart((prevCart) => {
+      return prevCart.filter((item) => indexDelete !== item.id);
+    });
+  }
+
   function shoppingComplete() {
     alert("Order Processing...");
-    setStoreInfo((prevInfo) => {
-      return prevInfo.map((info) => ({
-        ...info,
-        quantity: 1,
-      }));
-    });
     setShopCart([]);
   }
 
   return (
     <div className="app">
       <BrowserRouter>
-        <Navbar cart={shopCart} />
+        <Navbar cart={shopCart} itemsTotal={totalItems} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -112,7 +108,8 @@ function App() {
                 cart={shopCart}
                 deleteItem={deleteItem}
                 check={shoppingComplete}
-                addSub = {incrementQuant}
+                addSub={incrementQuant}
+                total = {grandTotal}
               />
             }
           />
