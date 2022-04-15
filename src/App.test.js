@@ -1,8 +1,29 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/hello world/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App testing", () => {
+  test("renders shopping site description", () => {
+    render(<App />);
+    const linkElement = screen.getByText(/unique/i);
+    expect(linkElement).toBeInTheDocument();
+  });
+  test('click button', ()=> {
+    render(<App />);
+    const buttonElement = screen.getByRole("button");
+    userEvent.click(buttonElement);
+    expect(buttonElement).not.toBeInTheDocument();
+  });
+  test('click home link', () => {
+    render(<App />);
+    const linkElement = screen.getByText(/home/i);
+    userEvent.click(linkElement);
+    expect(linkElement).toBeInTheDocument();
+  });
+  test('click shop link', () => {
+    render(<App />);
+    const linkElement = screen.getByText(/shop/i);
+    userEvent.click(linkElement);
+    expect(linkElement).toBeInTheDocument();
+  })
 });

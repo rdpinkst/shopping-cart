@@ -15,6 +15,7 @@ function App() {
   const [totalItems, setTotalItems] = useState('');
   const [grandTotal, setGrandTotal] = useState('')
 
+  //Add items to the shopping cart (shopCart)
   function clickAdd(e) {
     const indexBuy = parseInt(e.target.id);
 
@@ -39,6 +40,7 @@ function App() {
     });
   }
 
+  //Updates total items and checkout total when shopping cart state changes
   useEffect(() => {
     if (shopCart.length) {
       setTotalItems(total(shopCart));
@@ -46,16 +48,19 @@ function App() {
     }
   }, [shopCart]);
 
+  //Total items in shopping cart
   function total(cart) {
     const quantityArray = cart.map((item) => item.quantity);
     return quantityArray.reduce((a, b) => a + b);
   }
 
+  //Grand total spent on items
   function totalSpent(cart) {
     const totalArray = cart.map((item) => item.quantity * item.price);
     return totalArray.reduce((a, b) => a + b)
   }
 
+  //Adds or subtracts one from current quanity
   function incrementQuant(e) {
     const indexIncrement = parseInt(e.target.parentElement.id);
 
@@ -78,6 +83,7 @@ function App() {
     });
   }
 
+  //Deletes an item that is not wanted
   function deleteItem(e) {
     const indexDelete = parseInt(e.target.id);
 
@@ -86,6 +92,7 @@ function App() {
     });
   }
 
+  //Changes state empty cart
   function shoppingComplete() {
     alert("Order Processing...");
     setShopCart([]);
