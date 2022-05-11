@@ -85,7 +85,7 @@ function App() {
 
   //Deletes an item that is not wanted
   function deleteItem(e) {
-    const indexDelete = parseInt(e.target.id);
+    const indexDelete = parseInt(e.currentTarget.id);
 
     setShopCart((prevCart) => {
       return prevCart.filter((item) => indexDelete !== item.id);

@@ -22,12 +22,20 @@
 }
 
 .remove-product{
-    position: absolute;
-    margin-left: auto;
+    margin: 0.5rem 0;
 }
 
+.inc-button{
+    display: flex;
+    margin: 0.5rem 0;
+}
 .quant-button{
     display: flex;
+    justify-content: space-between;
+    width: 240px;
+    margin: 0.5rem 0 0.5rem 0;
+}
+.item-price{
     margin: 0.5rem 0;
 }
 
@@ -49,6 +57,3 @@
     margin-top: 0.5rem;
 }
 
-span{
-    cursor: pointer;
-}
