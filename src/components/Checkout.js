@@ -8,17 +8,7 @@ function Checkout({ cart, deleteItem, check, addSub, total }) {
   const cartView = cart.map((item) => {
     return (
       <div key={item.id} className="checkout-cart">
-        {/* <div className="remove-product" id={item.id} onClick={deleteItem}>
-          <Icon
-            path={mdiDelete}
-            title="Delete"
-            size={1}
-            // color="red"
-          />
-
-        </div> */}
         <img className="product-cart" src={item.pic} alt="pot pic" />
-        {/* <p>${item.price}</p> */}
         <div className="quant-button">
         <p className="item-price">${item.price}</p>
           <div id={item.id} className="inc-button">
@@ -35,7 +25,7 @@ function Checkout({ cart, deleteItem, check, addSub, total }) {
               path={mdiDelete}
               title="Delete"
               size={1}
-              // color="red"
+              
             />
           </div>
         </div>
@@ -52,7 +42,7 @@ function Checkout({ cart, deleteItem, check, addSub, total }) {
           CHECKOUT
         </button>
       ) : (
-        <Link to="/shop">
+        <Link to="/shopping-cart/shop">
           <button className="goshop-btn">Go Shopping</button>
         </Link>
       )}

@@ -103,13 +103,13 @@ function App() {
       <BrowserRouter>
         <Navbar cart={shopCart} itemsTotal={totalItems} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/shopping-cart/" element={<HomePage />} />
           <Route
-            path="/shop"
+            path="/shopping-cart/shop"
             element={<Shop click={clickAdd} infoStore={storeInfo} />}
           />
           <Route
-            path="/checkout"
+            path="/shopping-cart/checkout"
             element={
               <Checkout
                 cart={shopCart}

@@ -7,13 +7,13 @@ import "../styles/navbar.css";
 function Navbar({cart, itemsTotal}) {
   return (
     <div className="nav-all">
-      <Link to="/">
+      <Link to="/shopping-cart/">
         <h1 className="shop-name">Pots Shop</h1>
       </Link>
       <div className="right-nav">
-        <Link to="/">HOME</Link>
-        <Link to="/shop">SHOP</Link>
-        <Link to="/checkout">
+        <Link to="/shopping-cart/">HOME</Link>
+        <Link to="/shopping-cart/shop">SHOP</Link>
+        <Link to="/shopping-cart/checkout">
           <FontAwesomeIcon icon={faBagShopping} />
           {cart.length > 0 && <span>({itemsTotal})</span>}
         </Link>
